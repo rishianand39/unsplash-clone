@@ -61,11 +61,79 @@ const Navbar = () => {
       text: "Help Center",
     },
   ];
+  const navText = [
+    {
+      text: "About",
+    },
+    {
+      text: "History",
+    },
+    {
+      text: "Join the team",
+    },
+    {
+      text: "Press",
+    },
+    {
+      text: "Contact us",
+    },
+    {
+      text: "Help Center",
+    },
+    {
+      text: "About",
+    },
+    {
+      text: "History",
+    },
+    {
+      text: "Join the team",
+    },
+    {
+      text: "Press",
+    },
+    {
+      text: "Contact us",
+    },
+    {
+      text: "Help Center",
+    },
+    {
+      text: "Join the team",
+    },
+    {
+      text: "Press",
+    },
+    {
+      text: "Contact us",
+    },
+    {
+      text: "Help Center",
+    },
+    {
+      text: "About",
+    },
+    {
+      text: "History",
+    },
+    {
+      text: "Join the team",
+    },
+    {
+      text: "Press",
+    },
+    {
+      text: "Contact us",
+    },
+    {
+      text: "Help Center",
+    },
+  ];
 
   return (
-    <Box >
+    <Box>
       <HStack
-      padding="0 15px"
+        padding="0 15px"
         background="white.100"
         justifyContent={"space-between"}
       >
@@ -145,6 +213,13 @@ const Navbar = () => {
             </MenuList>
           </Menu>
         </Box>
+      </HStack>
+      <HStack padding="5px 15px">
+        {navText.map((item) => (
+          <Link to="/" style={{padding:"5px"}}>
+            <Button text={item.text} />
+          </Link>
+        ))}
       </HStack>
     </Box>
   );
