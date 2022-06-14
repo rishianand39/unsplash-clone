@@ -1,5 +1,7 @@
 // `https://api.unsplash.com/search/photos?query=${query}&client_id=${client_id}&per_page=20import axios from "axios";
 
+import axios from "axios";
+
 export const actionTypes = {
     AUTH_LOADING: "AUTH_LOADING",
     AUTH_SUCCESS: "AUTH_SUCCESS",
