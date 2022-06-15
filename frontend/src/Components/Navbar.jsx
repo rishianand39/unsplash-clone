@@ -1,227 +1,215 @@
-import {
-  background,
-  Box,
-  Flex,
-  HStack,
-  IconButton,
-  Image,
-  Text,
-} from "@chakra-ui/react";
 import React from "react";
+import styled from "styled-components";
 import Search from "./Search";
 import Button from "./Button";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-} from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
+const text = [
+  {
+    text: "Explore",
+  },
+  {
+    text: "Advertise",
+  },
+  {
+    text: "Blog",
+  },
+  {
+    text: "Log in  /",
+  },
+  {
+    text: "Sign up",
+  },
+];
+const barText = [
+  {
+    text: "About",
+    to: "/f",
+  },
+  {
+    text: "History",
+    to: "/f",
+  },
+  {
+    text: "Join the team",
+    to: "/f",
+  },
+  {
+    text: "Press",
+    to: "/f",
+  },
+  {
+    text: "Contact us",
+    to: "/f",
+  },
+  {
+    text: "Help Center",
+    to: "/f",
+  },
+];
+const navText = [
+  {
+    text: "Editorial",
+  },
+  {
+    text: "Current Events",
+  },
+  {
+    text: "Wallpapers",
+  },
+  {
+    text: "3D Renders",
+  },
+  {
+    text: "Textures & Patterns",
+  },
+  {
+    text: "Experimental",
+  },
+  {
+    text: "Architecture",
+  },
+  {
+    text: "Bussiness & Work",
+  },
+  {
+    text: "Fashion",
+  },
+  {
+    text: "Film",
+  },
+  {
+    text: "Food & Drink",
+  },
+  {
+    text: "Health & Wellness",
+  },
+  {
+    text: "People",
+  },
+  {
+    text: "Interiors",
+  },
+  {
+    text: "Street Photography",
+  },
+  {
+    text: "Travel",
+  },
+  {
+    text: "Animals",
+  }
+  ,
+  {
+    text: "Spirituality",
+  },
+  {
+    text: "Arts & Culture",
+  },
+  {
+    text: "History",
+  },
+  {
+    text: "Atheltics",
+  }
+];
+const Container = styled.div`
+  width: 100vw;
 
+`;
+const Top = styled.div`
+  display: flex;
+
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+`;
+const FlexLogo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0.5;
+
+
+`;
+const FlexSearch = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 6;
+
+`;
+const FlexText = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 3;
+padding-left: 10px;
+
+
+`;
+const Logo = styled.img`
+  display: flex;
+  width: 50px;
+  height: 50px;
+`;
+const Submit = styled.button`
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid;
+  padding: 5px;
+  min-width: 100px;
+
+`;
+const BarIcon = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  flex: 0.5;
+  justify-content: center;
+`;
+const Bottom=styled.div`
+  display: flex;
+  align-items: center;
+  padding:5px 15px;
+  overflow-x: hidden;
+`
+const ButtonBox=styled.div`
+  margin: 10px;
+`
 const Navbar = () => {
-  const text = [
-    {
-      text: "Explore",
-    },
-    {
-      text: "Advertise",
-    },
-    {
-      text: "Blog",
-    },
-    {
-      text: "Log in  /",
-    },
-    {
-      text: "Sign up",
-    },
-  ];
-  const barText = [
-    {
-      text: "About",
-    },
-    {
-      text: "History",
-    },
-    {
-      text: "Join the team",
-    },
-    {
-      text: "Press",
-    },
-    {
-      text: "Contact us",
-    },
-    {
-      text: "Help Center",
-    },
-  ];
-  const navText = [
-    {
-      text: "About",
-    },
-    {
-      text: "History",
-    },
-    {
-      text: "Join the team",
-    },
-    {
-      text: "Press",
-    },
-    {
-      text: "Contact us",
-    },
-    {
-      text: "Help Center",
-    },
-    {
-      text: "About",
-    },
-    {
-      text: "History",
-    },
-    {
-      text: "Join the team",
-    },
-    {
-      text: "Press",
-    },
-    {
-      text: "Contact us",
-    },
-    {
-      text: "Help Center",
-    },
-    {
-      text: "Join the team",
-    },
-    {
-      text: "Press",
-    },
-    {
-      text: "Contact us",
-    },
-    {
-      text: "Help Center",
-    },
-    {
-      text: "About",
-    },
-    {
-      text: "History",
-    },
-    {
-      text: "Join the team",
-    },
-    {
-      text: "Press",
-    },
-    {
-      text: "Contact us",
-    },
-    {
-      text: "Help Center",
-    },
-  ];
-
   return (
-    <Box>
-      <HStack
-        padding="0 15px"
-        background="white.100"
-        justifyContent={"space-between"}
-      >
-        <Image
-          width="50px"
-          src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/tbvbvipimh2camf5nb2q"
-        />
-        <Flex minWidth={"70%"}>
+    <Container>
+      <Top>
+        <FlexLogo>
+          <Logo src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/tbvbvipimh2camf5nb2q" />
+        </FlexLogo>
+        <FlexSearch>
           <Search />
-        </Flex>
-        {text.map((item) => (
-          <Button text={item.text} />
-        ))}
-        <Box
-          border={"1px solid gray"}
-          padding="5px"
-          borderRadius={"4px"}
-          fontSize={"12px"}
-          color="gray.500"
-        >
-          Submit a photo
-        </Box>
-        <Box>
-          <Menu>
-            <MenuButton>
-              <HamburgerIcon />
-            </MenuButton>
-            <MenuList display="flex">
-              <MenuItem
-                flex={1}
-                width="120px"
-                _hover={{
-                  background: "white",
-                  color: "teal.500",
-                }}
-              >
-                <Box flex={1}>
-                  {barText.map((item) => (
-                    <Link to="/" style={{ margin: "5px" }}>
-                      <Button text={item.text} />
-                    </Link>
-                  ))}
-                </Box>
-              </MenuItem>
-              <MenuItem
-                flex={1}
-                width="120px"
-                _hover={{
-                  background: "white",
-                  color: "teal.500",
-                }}
-              >
-                <Box flex={1}>
-                  {barText.map((item) => (
-                    <Link to="/" style={{ margin: "5px" }}>
-                      <Button text={item.text} />
-                    </Link>
-                  ))}
-                </Box>
-              </MenuItem>
-              <MenuItem
-                flex={1}
-                width="120px"
-                _hover={{
-                  background: "white",
-                  color: "teal.500",
-                }}
-              >
-                <Box flex={1}>
-                  {barText.map((item) => (
-                    <Link to="/" style={{ margin: "5px" }}>
-                      <Button text={item.text} />
-                    </Link>
-                  ))}
-                </Box>
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        </Box>
-      </HStack>
-      <HStack padding="5px 15px">
-        {navText.map((item) => (
-          <Link to="/" style={{padding:"5px"}}>
+        </FlexSearch>
+        <FlexText>
+          {text.map((item) => (
             <Button text={item.text} />
-          </Link>
-        ))}
-      </HStack>
-    </Box>
+          ))}
+        <Submit>Submit a photo</Submit>
+        </FlexText>
+        <BarIcon>
+          <HamburgerIcon />
+        </BarIcon>
+      </Top>
+      <Bottom>
+        {navText.map(item=>
+       
+            <ButtonBox>
+
+            <Button text={item.text} />
+            </ButtonBox>
+        
+        
+        )}
+      </Bottom>
+    </Container>
   );
 };
 
