@@ -1,8 +1,10 @@
 import React from 'react'
 
-const PhotoCard = () => {
+const PhotoCard = ({item}) => {
   return (
-    <div>PhotoCard</div>
+    <div>
+      <img src={item.urls.small} alt="" />
+    </div>
   )
 }
 

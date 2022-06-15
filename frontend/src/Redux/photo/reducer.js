@@ -17,11 +17,12 @@ export const photoReducer=(state=initialState,{type,payload})=>{
             }
         }
         case actionTypes.PHOTO_SUCCESS:{
+           console.log("pay",payload)
             return{
                 ...state,
                 isLoading:false,
                 isError:false,
-                data:payload
+                data:[...state.data,...payload]
             }
         }
         case actionTypes.PHOTO_FAILURE:{

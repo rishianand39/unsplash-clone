@@ -1,4 +1,4 @@
-// `https://api.unsplash.com/search/photos?query=${query}&client_id=${client_id}&per_page=20import axios from "axios";
+
 
 import axios from "axios";
 

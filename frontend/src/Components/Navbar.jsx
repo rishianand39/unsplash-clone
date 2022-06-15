@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Search from "./Search";
 import Button from "./Button";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { v4 as uuid } from 'uuid';
 import { Link } from "react-router-dom";
 const text = [
   {
@@ -24,27 +25,27 @@ const text = [
 const barText = [
   {
     text: "About",
-    to: "/f",
+   
   },
   {
     text: "History",
-    to: "/f",
+   
   },
   {
     text: "Join the team",
-    to: "/f",
+   
   },
   {
     text: "Press",
-    to: "/f",
+   
   },
   {
     text: "Contact us",
-    to: "/f",
+   
   },
   {
     text: "Help Center",
-    to: "/f",
+   
   },
 ];
 const navText = [
@@ -114,7 +115,7 @@ const navText = [
   }
 ];
 const Container = styled.div`
-  width: 100vw;
+  width: 98vw;
 
 `;
 const Top = styled.div`
@@ -123,7 +124,7 @@ const Top = styled.div`
   padding: 0 10px;
   display: flex;
   align-items: center;
-  width: 100vw;
+  width: 98vw;
 `;
 const FlexLogo = styled.div`
   display: flex;
@@ -174,6 +175,7 @@ const Bottom=styled.div`
   align-items: center;
   padding:5px 15px;
   overflow-x: hidden;
+  width: 98vw;
 `
 const ButtonBox=styled.div`
   margin: 10px;
@@ -190,7 +192,7 @@ const Navbar = () => {
         </FlexSearch>
         <FlexText>
           {text.map((item) => (
-            <Button text={item.text} />
+            <Button key={uuid()} text={item.text} />
           ))}
         <Submit>Submit a photo</Submit>
         </FlexText>
@@ -201,7 +203,7 @@ const Navbar = () => {
       <Bottom>
         {navText.map(item=>
        
-            <ButtonBox>
+            <ButtonBox key={uuid()}>
 
             <Button text={item.text} />
             </ButtonBox>
