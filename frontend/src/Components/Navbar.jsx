@@ -4,7 +4,7 @@ import Search from "./Search";
 import Button from "./Button";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { v4 as uuid } from 'uuid';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const text = [
   {
     text: "Explore",
@@ -51,67 +51,89 @@ const barText = [
 const navText = [
   {
     text: "Editorial",
+    param:"editorial"
+    
   },
   {
     text: "Current Events",
+    param:"currentevents"
   },
   {
     text: "Wallpapers",
+    param:"wallpapers"
   },
   {
     text: "3D Renders",
+    param:"3drenders"
   },
   {
     text: "Textures & Patterns",
+    param:"textures"
   },
   {
     text: "Experimental",
+    param:"experimental"
   },
   {
     text: "Architecture",
+    param:"architecture"
   },
   {
     text: "Bussiness & Work",
+    param:"bussiness"
   },
   {
     text: "Fashion",
+    param:"fashion"
   },
   {
     text: "Film",
+    param:"film"
   },
   {
     text: "Food & Drink",
+    param:"food"
   },
   {
     text: "Health & Wellness",
+    param:"health"
   },
   {
     text: "People",
+    param:"people"
   },
   {
     text: "Interiors",
+    param:"interiors"
   },
   {
     text: "Street Photography",
+    param:"street"
   },
   {
     text: "Travel",
+    param:"travel"
   },
   {
     text: "Animals",
+    param:"animals"
   }
   ,
   {
     text: "Spirituality",
+    param:"spiritual"
   },
   {
     text: "Arts & Culture",
+    param:"arts"
   },
   {
     text: "History",
+    param:"history"
   },
   {
     text: "Atheltics",
+    param:"atheltics"
   }
 ];
 const Container = styled.div`
@@ -180,15 +202,24 @@ const Bottom=styled.div`
 const ButtonBox=styled.div`
   margin: 10px;
 `
-const Navbar = () => {
+const Navbar = ({searchquery}) => {
+
+  const navigate=useNavigate()
+  const handleCategory=(item)=>{
+    navigate(`/category/${item.param}`)
+    
+  }
   return (
     <Container>
       <Top>
         <FlexLogo>
+          <Link to="/">
+          
           <Logo src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/tbvbvipimh2camf5nb2q" />
+          </Link>
         </FlexLogo>
         <FlexSearch>
-          <Search />
+          <Search searchquery={searchquery}/>
         </FlexSearch>
         <FlexText>
           {text.map((item) => (
@@ -205,7 +236,7 @@ const Navbar = () => {
        
             <ButtonBox key={uuid()}>
 
-            <Button text={item.text} />
+            <Button text={item.text} onclick={()=>handleCategory(item)} />
             </ButtonBox>
         
         

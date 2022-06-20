@@ -43,7 +43,7 @@ const Span = styled.span`
 `;
 const InfoSearch = styled.div``;
 
-const Banner = () => {
+const Banner = ({searchquery}) => {
   return (
     <Container>
       <BannerImg src="https://images.unsplash.com/photo-1653856114603-d67a3735c376?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&auto=format%2Ccompress&fit=crop&w=1000&h=1000" />
@@ -58,7 +58,7 @@ const Banner = () => {
             </P>
           </InfoText>
           <InfoSearch>
-            <Search />
+            <Search searchquery={searchquery}/>
           </InfoSearch>
           <br />
           <Span>Trending: flower wallpapers backgrounds happy love</Span>
