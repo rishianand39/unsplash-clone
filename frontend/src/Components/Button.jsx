@@ -4,7 +4,7 @@ import React from 'react'
 const Button = ({text,onclick}) => {
   return (
    <Box>
-     <Text width={"max-content"} onClick={onclick}  cursor={"pointer"} fontSize="12px" color={'gray.500'}>{text}</Text>
+     <Text width={"max-content"} onClick={onclick}  cursor={"pointer"} fontSize="13px" color={'gray.500'}>{text}</Text>
    </Box>
   )
 }

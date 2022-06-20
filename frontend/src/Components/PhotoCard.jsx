@@ -124,7 +124,7 @@ const ModalIcon=styled.div`
 function PhotoCard({ item }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [size, setSize] = useState('md')
-  console.log(item)
+  // console.log(item)
   return (
     <>
       <Container onClick={onOpen}>

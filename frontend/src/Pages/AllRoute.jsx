@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import CategoryPage from "./CategoryPage";
 import Currentevents from "./Currentevents";
 import Home from "./Home"
+import Login from "./Login"
+import Register from "./Register"
 import Wallpapers from "./Wallpapers"
 import Threedrenders from "./Threedrenders"
 import Textures from "./Textures"
@@ -26,6 +28,8 @@ const AllRoutes = () => {
     <div>
       <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/category" >
         <Route index element={<CategoryPage />}/>
         <Route path="currentevents" element={<Currentevents />}/>
