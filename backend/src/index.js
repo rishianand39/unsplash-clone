@@ -8,7 +8,7 @@ app.use(express.json())
 
 const registerController=require("./controllers/Auth.controller")
 
-app.use("/api",registerController)
+app.use("/api/auth",registerController)
 
 
 

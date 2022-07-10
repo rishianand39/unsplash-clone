@@ -18,7 +18,6 @@ export const actionTypes = {
   export const register_success = (data) => {
     return {
       type: actionTypes.AUTH_SUCCESS,
-      payload: data,
     };
   };
   export const register_failure = () => {
@@ -33,9 +32,10 @@ export const actionTypes = {
       type: actionTypes.AUTH_LOADING,
     };
   };
-  export const login_success = () => {
+  export const login_success = (data) => {
     return {
       type: actionTypes.AUTH_SUCCESS,
+      payload:data
     };
   };
   export const login_failure = () => {
@@ -46,19 +46,18 @@ export const actionTypes = {
   
   
   // REGISTER
-  export const register =
-    ({ first_name, last_name, email, username, password }) =>
+  export const register =({ first_name, last_name, email, username, password }) =>
     async (dispatch) => {
       dispatch(register_loading());
       try {
-         await axios.post("", {
+         await axios.post("https://unsplash-clone-application.herokuapp.com/api/auth/register", {
           first_name: first_name,
           last_name: last_name,
           username: username,
           email: email,
           password: password,
         });
-        return dispatch(register_success())
+        // return dispatch(register_success())
       } catch (error) {
         return dispatch(register_failure());
       }
@@ -70,11 +69,12 @@ export const actionTypes = {
     async (dispatch) => {
       dispatch(login_loading());
       try {
-        const res = await axios.post("", {
+        const res = await axios.post("https://unsplash-clone-application.herokuapp.com/api/auth/login", {
           email: email,
           password: password,
         });
-        return dispatch(login_success());
+        console.log(res)
+        return dispatch(login_success(res.data));
       } catch (error) {
         return dispatch(login_failure());
       }

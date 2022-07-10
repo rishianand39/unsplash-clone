@@ -4,7 +4,8 @@ export const initialState = {
     status:false,
     token:null,
     isLoading:false,
-    isError:false
+    isError:false,
+    data:[]
 }
 
 export const authReducer=(state=initialState,{type,payload})=>{
@@ -23,7 +24,7 @@ export const authReducer=(state=initialState,{type,payload})=>{
                 status:true,
                 isLoading:false,
                 isError:false,
-                token:payload
+                data:payload
             }
         }
         case actionTypes.FAILURE:{

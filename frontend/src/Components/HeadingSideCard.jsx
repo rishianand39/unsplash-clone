@@ -10,6 +10,9 @@ border: 1px solid gray;
 min-width: 250px;
 max-height: 150px;
 /* flex:3 */
+@media only screen and (max-width:700px){
+  display: none;
+}
 `;
 const Row = styled.div`
 display: flex;

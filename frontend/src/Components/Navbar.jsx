@@ -163,6 +163,9 @@ const FlexText = styled.div`
   align-items: center;
   flex: 3;
   padding-left: 10px;
+  @media only screen  and (max-width:800px) {
+    display: none;
+  }
 `;
 const Logo = styled.img`
   display: flex;
@@ -175,6 +178,9 @@ const Submit = styled.button`
   border: 1px solid;
   padding: 5px;
   min-width: 100px;
+  @media only screen and (max-width:880px) {
+    display: none;
+  }
 `;
 const BarIcon = styled.div`
   display: flex;
@@ -189,6 +195,17 @@ const Bottom = styled.div`
   padding: 5px 15px;
   overflow-x: hidden;
   width: 98vw;
+  overflow-x: scroll;
+  ::-webkit-scrollbar {
+    /* width: 8px; */
+    height: 5px;
+    cursor: pointer
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(179, 179, 179);
+  }
+  
 `;
 const ButtonBox = styled.div`
   margin: 10px;

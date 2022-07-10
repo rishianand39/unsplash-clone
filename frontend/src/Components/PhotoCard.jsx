@@ -65,6 +65,8 @@ const Icon = styled.div`
   border: 1px solid;
   &:hover {
     transform: scale(1.1);
+    cursor: pointer;
+    color: red;
   }
 `;
 const Text = styled.div`
@@ -128,7 +130,7 @@ function PhotoCard({ item }) {
   return (
     <>
       <Container onClick={onOpen}>
-        <Img src={item.urls.small} alt="" />
+        <Img src={item.urls.small} alt={item.alt_description} />
         <Wrapper>
           <Top>
             <Icon>
@@ -143,9 +145,11 @@ function PhotoCard({ item }) {
               <Logo src={item.user.profile_image.small} />
               <Text>{item.user.name}</Text>
             </Text>
+            <a href="" download={`${item.links.download_location}.jpg`} title="ImageName">
             <Icon>
-              <AiOutlineArrowDown />
+              <AiOutlineArrowDown/>
             </Icon>
+              </a>
           </Bottom>
         </Wrapper>
       </Container>
@@ -167,9 +171,11 @@ function PhotoCard({ item }) {
             <Icon>
               <AiOutlinePlus />
             </Icon>
+            <a href="" download={`${item.links.download_location}.jpg`} title="ImageName">
             <Icon>
-              <AiOutlineArrowDown />
+              <AiOutlineArrowDown/>
             </Icon>
+              </a>
             
             </ModalIcon>
           </ModalTitle>

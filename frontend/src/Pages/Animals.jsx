@@ -24,6 +24,8 @@ const Header=styled.div`
   margin:30px auto;
 `
 
+
+
 const Animals = () => {
 
 

@@ -2,7 +2,6 @@ const router=require("express").Router();
 const User=require("../models/user.model")
 const CryptoJS=require("crypto-js")
 
-require('dotenv').config()
 
 
 
@@ -12,7 +11,7 @@ router.post("/register",async(req,res)=>{
         first_name:req.body.first_name,
         last_name:req.body.last_name,
         email:req.body.email,
-        password:CryptoJS.AES.encrypt(req.body.password,process.env.CRYPTO_SECRET).toString(),
+        password:CryptoJS.AES.encrypt(req.body.password,"rishi").toString(),
         username:req.body.username,
 
     })
@@ -33,7 +32,7 @@ router.post("/login",async(req,res)=>{
             return res.status(401).json("wrong credential")
         }
 
-        const hashedPassword=CryptoJS.AES.decrypt(user.password,process.env.CRYPTO_SECRET);
+        const hashedPassword=CryptoJS.AES.decrypt(user.password,"rishi");
 
         
         const originalPassword=hashedPassword.toString(CryptoJS.enc.Utf8)
