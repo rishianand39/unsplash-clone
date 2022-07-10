@@ -3,22 +3,25 @@ import styled from "styled-components";
 import Search from "./Search";
 
 const Container = styled.div`
-  border: "1px solid";
+  /* border: 1px solid red; */
+  width: 98vw;
+  height: calc(70vh - 150px);
+  position: relative;
+  margin:0 auto 30px;
 `;
 
 const BannerImg = styled.img`
-  width: 100vw;
-  height: 60vh;
-  position: relative;
+  width: 100%;
+  height: 100%;
   margin-bottom: 20px;
 `;
 const Wrapper = styled.div`
-  background-color: black;
+  background-color: #494848;
   width: 100%;
-  height: 59.5vh;
+  height: 100%;
   opacity: 0.5;
   position: absolute;
-  top: 100px;
+  top: 0;
 `;
 const Info = styled.div`
   width: 50vw;
@@ -43,7 +46,7 @@ const Span = styled.span`
 `;
 const InfoSearch = styled.div``;
 
-const Banner = ({searchquery}) => {
+const Banner = ({ searchquery }) => {
   return (
     <Container>
       <BannerImg src="https://images.unsplash.com/photo-1653856114603-d67a3735c376?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&auto=format%2Ccompress&fit=crop&w=1000&h=1000" />
@@ -58,7 +61,7 @@ const Banner = ({searchquery}) => {
             </P>
           </InfoText>
           <InfoSearch>
-            <Search searchquery={searchquery}/>
+            <Search searchquery={searchquery} />
           </InfoSearch>
           <br />
           <Span>Trending: flower wallpapers backgrounds happy love</Span>
