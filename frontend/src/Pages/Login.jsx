@@ -1,5 +1,10 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
+import { login } from "../Redux/auth/action";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -8,35 +13,17 @@ const Container = styled.div`
 `;
 
 
-const Wrapper = styled.div`
-  background-color: black;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  opacity: 0.7;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px;
-`;
 const Logo = styled.img`
   width: 100px;
   height: 100px;
 `;
 
-
 const Text = styled.div`
-  font-size:${props=>props.fontsize};
-  color: ${props=>props.color};
+  font-size: ${(props) => props.fontsize};
+  color: ${(props) => props.color};
   margin-bottom: 15px;
   font-weight: bold;
 `;
-
-
-
-
 
 const Form = styled.div`
   display: flex;
@@ -62,46 +49,85 @@ const InputWrapper = styled.div`
   padding: 15px;
   margin: auto;
 `;
-const Bottom=styled.div`
+const Bottom = styled.div`
   margin-top: 30px;
   border: 1px solid gray;
-  padding:25px;
-`
-
+  padding: 25px;
+  cursor: pointer;
+`;
 
 const Login = () => {
+  const user = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+  const navigate=useNavigate()
+
+
+  
+  const [detail, setDetail] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleForm = (e) => {
+    setDetail((pre) => {
+      return {
+        ...pre,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(detail.email!=="" || detail.password!=="" ){
+      dispatch(login({ ...detail }));
+    }
+  };
+
+  useEffect(()=>{
+    if(user.data.length!==0){
+      navigate("/")
+    }
+
+  },[user,navigate])
+
   return (
     <Container>
-      <Logo src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/tbvbvipimh2camf5nb2q"/>
+      <Logo src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/tbvbvipimh2camf5nb2q" />
       <Text fontsize="1.5rem">Login</Text>
       <Text fontsize="0.9rem">Welcome back.</Text>
-      <Button background="blue" text="Login with Facebook"/>
-      <Form>
+      <Button background="blue" text="Login with Facebook" />
+      <Form onSubmit={handleSubmit}>
         <InputWrapper>
-        <InputLabel>
-        <Label>Email</Label>
-        <Input type="email" />
-        </InputLabel>
+          <InputLabel>
+            <Label>Email</Label>
+            <Input type="email" name="email" onChange={handleForm} />
+          </InputLabel>
         </InputWrapper>
         <InputWrapper>
-        <InputLabel>
-        <Label>Password</Label>
-        <Input type="password" />
-        </InputLabel>
+          <InputLabel>
+            <Label>Password</Label>
+            <Input type="password" name="password" onChange={handleForm} />
+          </InputLabel>
         </InputWrapper>
         <InputWrapper>
-        <Button background="black" text="Login" width="100%"/>
+          <Button
+            background="black"
+            text="Login"
+            width="100%"
+            onClick={handleSubmit}
+          />
         </InputWrapper>
-        <Bottom>Don't have an account ? Join Unsplash</Bottom>
+        <Link to="/register">
+          <Bottom>Don't have an account ? Join Unsplash</Bottom>
+        </Link>
       </Form>
     </Container>
-  )
-}
-
+  );
+};
 
 const Btn = styled.div`
   background-color: ${(props) => props.background};
-  width: ${props=>props.width};
+  width: ${(props) => props.width};
   padding: 10px;
   display: flex;
   align-items: center;
@@ -109,8 +135,13 @@ const Btn = styled.div`
   border-radius: 5px;
   color: white;
   font-weight: bold;
+  cursor: pointer;
 `;
-const Button = ({ background, text,width }) => {
-  return <Btn background={background} width={width}>{text}</Btn>;
+const Button = ({ background, text, width, onClick }) => {
+  return (
+    <Btn onClick={onClick} background={background} width={width}>
+      {text}
+    </Btn>
+  );
 };
-export default Login
+export default Login;
