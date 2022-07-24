@@ -1,37 +1,43 @@
 import { actionTypes } from "./action";
 
 export const initialState = {
-    status:false,
-    token:null,
     isLoading:false,
     isError:false,
-    data:[]
+    status:false,
+    data:JSON.parse(localStorage.getItem("data")) || [],
 }
 
 export const authReducer=(state=initialState,{type,payload})=>{
 
     switch(type){
-        case actionTypes.LOADING:{
+        case actionTypes.AUTH_LOADING:{
             return{
                 ...state,
                 isLoading:true,
-                isError:false
+                isError:false,
             }
         }
-        case actionTypes.SUCCESS:{
+        case actionTypes.AUTH_SUCCESS:{
+            localStorage.setItem("data", JSON.stringify(payload));
+            console.log(payload)
             return{
                 ...state,
-                status:true,
                 isLoading:false,
                 isError:false,
                 data:payload
             }
         }
-        case actionTypes.FAILURE:{
+        case actionTypes.AUTH_FAILURE:{
             return{
                 ...state,
                 isLoading:false,
                 isError:true,
+            }
+        }
+        case actionTypes.AUTH_STATUS:{
+            return{
+                ...state,
+                status:true
             }
         }
         default:{
