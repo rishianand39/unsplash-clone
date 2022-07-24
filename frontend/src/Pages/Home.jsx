@@ -6,7 +6,6 @@ import Navbar from "../Components/Navbar";
 import PhotoCard from "../Components/PhotoCard";
 import { v4 as uuid } from "uuid";
 import { fetch } from "../Redux/photo/action";
-// import {Macy} from "macy"
 
 
 const Container = styled.div``;
@@ -27,26 +26,6 @@ const ImageDiv = styled.div`
 
 
 
-// const macyInstance = Macy({
-// 	container: ImageDiv,
-//   margin: {
-// 		x: 15,
-// 		y: 15,
-// 	},
-//   columns:4
-// })
-
-// const fixStartUpBug = () => {
-// 	macyInstance.runOnImageLoad(function () {
-// 		macyInstance.recalculate(true, true)
-// 		var evt = document.createEvent('UIEvents')
-// 		evt.initUIEvent('resize', true, false, window, 0)
-// 		window.dispatchEvent(evt)
-// 	}, true)
-// }
-// fixStartUpBug()
-
-
 const Home = () => {
 
   
@@ -57,11 +36,11 @@ const Home = () => {
   });
   const dispatch = useDispatch();
   const data = useSelector((store) => store.photos.data);
-  console.log(data)
+
 
   useEffect(() => {
     dispatch(fetch(query));
-  }, [query.query]);
+  }, [query.query,dispatch,query]);
 
 
   return (
