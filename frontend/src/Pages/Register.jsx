@@ -1,6 +1,10 @@
-import { background } from "@chakra-ui/react";
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../Redux/auth/action";
+
 
 const Container = styled.div`
   display: flex;
@@ -39,6 +43,7 @@ const Text = styled.div`
   font-size:${props=>props.fontsize};
   color: ${props=>props.color};
   margin-bottom: 15px;
+  cursor: pointer;
 `;
 
 const Bottom = styled.div`
@@ -79,6 +84,42 @@ const InputWrapper = styled.div`
 `;
 
 const Register = () => {
+  const user = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+  const navigate=useNavigate()
+
+
+  
+  const [detail, setDetail] = useState({
+    first_name: "",
+    last_name: "",
+    email:"",
+    password:"",
+    username:"",
+  });
+
+  const handleForm = (e) => {
+    setDetail((pre) => {
+      return {
+        ...pre,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+    if(detail.first_name!=="" || detail.last_name!=="" || detail.email!=="" || detail.username!=="" || detail.password!==""){
+      dispatch(register({...detail}));
+    }
+  };
+
+  useEffect(()=>{
+    if(user.status){
+      navigate("/login")
+    }
+  },[user,navigate])
+
   return (
     <Container>
       <Left>
@@ -100,40 +141,42 @@ const Register = () => {
         <Heading color="black" fontsize="3rem">
           Join Unsplash
         </Heading>
+        <Link to="/login">
         <Text  color="black" fontsize="0.9rem">Already have an account ? Login</Text>
+          </Link>
         <Button text="Join using Facebook " background="blue" width="45%"/>
         <Form>
           <InputWrapper>
             <InputLabel>
               <Label>First Name</Label>
-              <Input type={"text"} />
+              <Input type={"text"} name="first_name" onChange={handleForm}/>
             </InputLabel>
             <InputLabel>
               <Label>Last Name</Label>
-              <Input type={"text"} />
+              <Input type={"text"} name="last_name" onChange={handleForm}/>
             </InputLabel>
           </InputWrapper>
 
           <InputWrapper>
             <InputLabel>
               <Label>Email</Label>
-              <Input type={"email"} />
+              <Input type={"email"} name="email" onChange={handleForm}/>
             </InputLabel>
           </InputWrapper>
           <InputWrapper>
             <InputLabel>
               <Label>Username(only letters,numbers, and underscores)</Label>
-              <Input type={"text"} />
+              <Input type={"text"} name="username" onChange={handleForm}/>
             </InputLabel>
           </InputWrapper>
           <InputWrapper>
             <InputLabel>
               <Label>Password(min. 8 char)</Label>
-              <Input type={"password"} />
+              <Input type={"password"} name="password" onChange={handleForm}/>
             </InputLabel>
           </InputWrapper>
           <InputWrapper>
-          <Button text="Join" background="black" width="100%" />
+          <Button onClick={handleSubmit} text="Join" background="black" width="100%" />
           </InputWrapper>
         </Form>
       </Right>
@@ -152,8 +195,8 @@ const Btn = styled.div`
   color: white;
   font-weight: bold;
 `;
-const Button = ({ background, text,width }) => {
-  return <Btn background={background} width={width}>{text}</Btn>;
+const Button = ({ background, text,width,onClick }) => {
+  return <Btn onClick={onClick} background={background} width={width}>{text}</Btn>;
 };
 
 export default Register;
