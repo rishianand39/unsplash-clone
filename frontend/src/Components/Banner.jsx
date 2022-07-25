@@ -14,6 +14,7 @@ const BannerImg = styled.img`
   width: 100%;
   height: 100%;
   margin-bottom: 20px;
+  object-fit:fill;
 `;
 const Wrapper = styled.div`
   background-color: #494848;
@@ -49,7 +50,7 @@ const InfoSearch = styled.div``;
 const Banner = ({ searchquery }) => {
   return (
     <Container>
-      <BannerImg src="https://images.unsplash.com/photo-1653856114603-d67a3735c376?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&auto=format%2Ccompress&fit=crop&w=1000&h=1000" />
+      <BannerImg src="https://images.unsplash.com/photo-1657805052690-7ddc57695d90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1vZi10aGUtZGF5fHx8fGVufDB8fHx8&dpr=1&auto=format%2Ccompress&fit=crop" />
       <Wrapper>
         <Info>
           <InfoText>
