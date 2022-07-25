@@ -3,15 +3,17 @@ import styled from "styled-components";
 import { login } from "../Redux/auth/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-
+import {
+  Alert,
+  AlertIcon,
+} from "@chakra-ui/react";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-
 
 const Logo = styled.img`
   width: 100px;
@@ -59,10 +61,10 @@ const Bottom = styled.div`
 const Login = () => {
   const user = useSelector((store) => store.auth);
   const dispatch = useDispatch();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+  const [alert,setAlert]=useState(false)
 
-
-  
+  console.log(user)
   const [detail, setDetail] = useState({
     email: "",
     password: "",
@@ -78,17 +80,18 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(detail.email!=="" || detail.password!=="" ){
+    if (detail.email !== "" || detail.password !== "") {
       dispatch(login({ ...detail }));
+    }else{
+      setAlert(true)
     }
   };
 
-  useEffect(()=>{
-    if(user.data.length!==0){
-      navigate("/")
+  useEffect(() => {
+    if (user.data.length !== 0) {
+      navigate("/");
     }
-
-  },[user,navigate])
+  }, [user, navigate]);
 
   return (
     <Container>
@@ -121,6 +124,8 @@ const Login = () => {
           <Bottom>Don't have an account ? Join Unsplash</Bottom>
         </Link>
       </Form>
+      {alert&& <AlertForEmptyField />}
+      {user.isError && <AlertComponent />}
     </Container>
   );
 };
@@ -144,4 +149,22 @@ const Button = ({ background, text, width, onClick }) => {
     </Btn>
   );
 };
+const AlertComponent = () => {
+  return (
+    <Alert status="error" style={{width:"350px",position:"absolute",bottom:"-80px",left:"5vw"}}>
+        <AlertIcon />
+       Something went wrong! Email or password is not valid.
+      </Alert>
+  );
+};
+const AlertForEmptyField = () => {
+  return (
+
+       <Alert status="error" style={{width:"350px",position:"absolute",bottom:"-80px",left:"5vw"}}>
+        <AlertIcon />
+        please fill all field. Both email and password is a must.
+      </Alert> 
+  );
+};
+
 export default Login;
