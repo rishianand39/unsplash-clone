@@ -6,7 +6,7 @@ import Navbar from "../Components/Navbar";
 import PhotoCard from "../Components/PhotoCard";
 import { v4 as uuid } from "uuid";
 import { fetch } from "../Redux/photo/action";
-
+import { Progress } from '@chakra-ui/react'
 
 const Container = styled.div``;
 const ImageDiv = styled.div`
@@ -35,23 +35,29 @@ const Home = () => {
     per_page: 30,
   });
   const dispatch = useDispatch();
-  const data = useSelector((store) => store.photos.data);
+  const {data,isLoading} = useSelector((store) => store.photos);
 
 
   useEffect(() => {
     dispatch(fetch(query));
   }, [query.query,dispatch,query]);
 
-
+console.log(data)
   return (
     <Container>
       <Navbar searchquery={(e)=>setQuery({...query,query:e.target.value })} />
       <Banner searchquery={(e)=>setQuery({...query,query:e.target.value })}/>
 
       <ImageDiv>
+        {isLoading?<Progress size='xs' isIndeterminate height="10px"/> 
+        :
+        <>
         {data?.map((item) => (
           <PhotoCard key={uuid()} item={item} />
-        ))}
+          ))}
+          </>
+      }
+     
       </ImageDiv>
       
     </Container>
